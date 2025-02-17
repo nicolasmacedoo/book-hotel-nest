@@ -11,6 +11,6 @@ export class MakeReservationController {
   async handle(@CurrentUser() user: UserPayload) {
     console.log(user)
 
-    return 'ok'
+    return 'HEALTH CHECK'
   }
 }
