@@ -1,0 +1,42 @@
+{
+  "family": "book-hotel-app",
+  "containerDefinitions": [
+    {
+      "name": "nicolas-ci",
+      "image": "<IMAGE>",
+      "portMappings": [
+        {
+          "containerPort": 3333,
+          "hostPort": 3333
+        }
+      ],
+      "environment": [
+        {
+          "name": "DATABASE_URL",
+          "value": "postgresql://${aws_db_instance.postgres.username}:${aws_db_instance.postgres.password}@${aws_db_instance.postgres.endpoint}/${aws_db_instance.postgres.db_name}?schema=public"
+        },
+        {
+          "name": "JWT_PRIVATE_KEY",
+          "value": "${jwt_private_key}"
+        },
+        {
+          "name": "JWT_PUBLIC_KEY",
+          "value": "${jwt_public_key}"
+        },
+        {
+          "name": "PORT",
+          "value": "3333"
+        }
+      ],
+      "memory": 512,
+      "cpu": 256,
+      "essential": true
+    }
+  ],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "networkMode": "bridge",
+  "cpu": "256",
+  "memory": "512"
+}
